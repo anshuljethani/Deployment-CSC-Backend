@@ -4,6 +4,6 @@ flask-cors>=3.0
 openai>=1.0.0
 qdrant-client==1.15.1
 python-dotenv>=1.0.0
-torch==2.2.2+cpu --extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.2.2 --extra-index-url https://download.pytorch.org/whl/cpu
 numpy<2
 gunicorn
