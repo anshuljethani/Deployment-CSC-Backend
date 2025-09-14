@@ -8,7 +8,7 @@ _pipelines = {
     "sentiment_pipe": pipeline("text-classification",
                                model=os.getenv("SENTIMENT_MODEL", "michellejieli/emotion_text_classifier")),
     "keywords_pipe": pipeline("text2text-generation",
-                              model=os.getenv("KEYWORDS_MODEL", "ilsilfverskiold/tech-keywords-extractor")),
+                              model=os.getenv("KEYWORDS_MODEL", "ml6team/keyphrase-generation-t5-base-inspec")),
 }
 
 print("✅ All Hugging Face models loaded.")
@@ -34,7 +34,7 @@ def keyword_calculation(text: str) -> str:
     Calculates keywords from the given text using a text-to-text generation model.
     """
     if "keyword_pipe" not in _pipelines:
-        model_id = os.getenv("KEYWORDS_MODEL", "ilsilfverskiold/tech-keywords-extractor")
+        model_id = os.getenv("KEYWORDS_MODEL", "ml6team/keyphrase-generation-t5-base-inspec")
         _pipelines["keyword_pipe"] = pipeline("text2text-generation", model=model_id, max_new_tokens=64)
 
     pipe = _pipelines["keyword_pipe"]
