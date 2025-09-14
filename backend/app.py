@@ -9,8 +9,23 @@ from services.qdrant_service import search_text, insert_point, retrieve_llm_resp
 from pipeline.ai_pipeline import ai_pipeline
 from pipeline.ml_processing import _pipelines
 from utils.fetch import fetch_tickets
-from config import FRONTEND_ORIGIN, QDRANT_TOP_K
-from config import QDRANT_URL, QDRANT_API_KEY, QDRANT_COLLECTION, OPENAI_API_KEY, QDRANT_COLLECTION_2, QDRANT_COLLECTION_3
+import os
+from dotenv import load_dotenv
+load_dotenv()
+# OpenAI
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# Qdrant
+QDRANT_URL = os.getenv("QDRANT_URL")
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
+QDRANT_COLLECTION = os.getenv("QDRANT_COLLECTION")
+QDRANT_COLLECTION_2 = os.getenv("QDRANT_COLLECTION_2")
+QDRANT_COLLECTION_3 = os.getenv("QDRANT_COLLECTION_3")
+QDRANT_VECTOR_NAME = os.getenv("QDRANT_VECTOR_NAME")
+QDRANT_TOP_K = int(os.getenv("QDRANT_TOP_K", 3))
+
+# CORS (frontend origin)
+VECTOR_NAME = QDRANT_VECTOR_NAME
+FRONTEND_ORIGIN=os.getenv("FRONTEND_ORIGIN")
 
 # Initialize the Flask application
 app = Flask(__name__)
