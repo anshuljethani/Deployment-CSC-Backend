@@ -1,6 +1,5 @@
 import os
 import json
-from fastapi import FastAPI
 from qdrant_client import QdrantClient
 from fastapi.responses import JSONResponse
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
