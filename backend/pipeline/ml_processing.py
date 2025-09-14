@@ -1,7 +1,17 @@
-import os
-from transformers import pipeline
+print("⚡ Loading Hugging Face pipelines at startup...")
 
-_pipelines = {}
+_pipelines = {
+    "priority_pipe": pipeline("zero-shot-classification",
+                              model=os.getenv("PRIORITY_MODEL", "valhalla/distilbart-mnli-12-1")),
+    "topic_pipe": pipeline("zero-shot-classification",
+                           model=os.getenv("TOPIC_MODEL", "MoritzLaurer/deberta-v3-base-zeroshot-v1")),
+    "sentiment_pipe": pipeline("text-classification",
+                               model=os.getenv("SENTIMENT_MODEL", "michellejieli/emotion_text_classifier")),
+    "keywords_pipe": pipeline("text2text-generation",
+                              model=os.getenv("KEYWORDS_MODEL", "ilsilfverskiold/tech-keywords-extractor")),
+}
+
+print("✅ All Hugging Face models loaded.")
 
 def priority_calculation(text: str) -> str:
     """
